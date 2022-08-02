@@ -1,0 +1,6 @@
+[submodule "preseed"]
+	path = preseed
+	url = https://github.com/whslabs/preseed-debian11.git
+[submodule "ansible/role-nix"]
+	path = ansible/role-nix
+	url = https://github.com/whslabs/ansible-role-nix.git

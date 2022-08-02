@@ -1,0 +1,5 @@
+- name: Create development
+  hosts: default
+
+  roles:
+    - role: role-nix
