@@ -1,0 +1,10 @@
+---
+# tasks file for role-cguv
+- name: Install cguv
+  ansible.builtin.apt:
+    pkg:
+    - curl
+    - git
+    - unzip
+    - vim
+  become: yes

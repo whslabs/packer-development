@@ -3,4 +3,5 @@
 
   roles:
     - role: role-bazelisk
+    - role: role-cguv
     - role: role-nix
