@@ -1,0 +1,8 @@
+---
+# tasks file for role-bazelisk
+- name: Install bazelisk
+  ansible.builtin.get_url:
+    dest: /usr/local/bin/bazelisk
+    mode: 0755
+    url: https://github.com/bazelbuild/bazelisk/releases/download/v{{ bazelisk_version }}/bazelisk-linux-amd64
+  become: yes
