@@ -1,6 +1,16 @@
 #!/bin/sh
 set -e
+set -x
+rm -f packer{,.pub}
+ssh-keygen \
+  -P "" \
+  -f packer \
+  -q \
+  -t ed25519 \
+  ;
+cp packer.pub preseed/
 rm -rf output-development/
+packer init -upgrade development.pkr.hcl
 packer build development.pkr.hcl
 t=$(mktemp)
 trap "rm $t" EXIT
