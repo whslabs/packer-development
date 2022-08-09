@@ -6,3 +6,4 @@
     - role: role-buildifier
     - role: role-cguv
     - role: role-nix
+    - role: role-node

@@ -1,0 +1,30 @@
+---
+# tasks file for role-nvm
+- name: Get nvm stats
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.nvm/"
+  register: nvm_st
+- name: Install nvm
+  block:
+  - name: Create nvm temporary directory
+    ansible.builtin.tempfile:
+      state: directory
+      suffix: nvm
+    register: nvm_tmpdir
+  - name: Download nvm
+    ansible.builtin.unarchive:
+      dest: "{{ nvm_tmpdir.path }}"
+      extra_opts: [--strip-components=1]
+      remote_src: yes
+      src: https://github.com/nvm-sh/nvm/archive/refs/tags/v{{ nvm_version }}.tar.gz
+  - name: Install nvm
+    ansible.builtin.command: "{{ nvm_tmpdir.path }}/install.sh"
+  - name: Remove nvm temporary directory
+    ansible.builtin.file:
+      path: "{{ nvm_tmpdir.path }}"
+      state: absent
+    when: nvm_tmpdir.path is defined
+  when: nvm_st.stat.isdir is not defined
+- name: Set nvm
+  ansible.builtin.set_fact:
+    shell_only_nvm: export NVM_DIR={{ ansible_env.HOME }}/.nvm/; . $NVM_DIR/nvm.sh; nvm
