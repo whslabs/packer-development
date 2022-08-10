@@ -25,6 +25,7 @@
       state: absent
     when: nvm_tmpdir.path is defined
   when: nvm_st.stat.isdir is not defined
-- name: Set nvm
+- name: Set nvm and npm
   ansible.builtin.set_fact:
+    shell_only_npm_install_g: export NVM_DIR={{ ansible_env.HOME }}/.nvm/; . $NVM_DIR/nvm.sh; npm install -g
     shell_only_nvm: export NVM_DIR={{ ansible_env.HOME }}/.nvm/; . $NVM_DIR/nvm.sh; nvm

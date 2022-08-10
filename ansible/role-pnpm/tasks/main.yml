@@ -1,0 +1,4 @@
+---
+# tasks file for role-pnpm
+- name: Install pnpm
+  ansible.builtin.shell: "{{ shell_only_npm_install_g }} pnpm"

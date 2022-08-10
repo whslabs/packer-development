@@ -7,3 +7,4 @@
     - role: role-cguv
     - role: role-nix
     - role: role-node
+    - role: role-pnpm
