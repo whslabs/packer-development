@@ -2,3 +2,5 @@
 # tasks file for role-node
 - name: Install node
   ansible.builtin.shell: "{{ shell_only_nvm }} install node"
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/versions/node/"
