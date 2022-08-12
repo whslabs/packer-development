@@ -25,3 +25,9 @@ virt-install \
   ;
 )
 ```
+
+# Ansible
+```sh
+cd ansible/
+ansible-playbook -idefault, -clocal playbook.yaml -K
+```
