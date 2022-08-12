@@ -2,6 +2,7 @@
 # tasks file for role-pnpm
 - name: Get node version
   ansible.builtin.shell: "{{ shell_only_node }} --version"
+  changed_when: False
   register: node_version_output
 - name: Install pnpm
   ansible.builtin.shell: "{{ shell_only_npm_install_g }} pnpm"
