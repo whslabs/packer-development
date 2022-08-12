@@ -1,0 +1,6 @@
+---
+# tasks file for role-ansible
+- name: Install ansible
+  ansible.builtin.command: "{{ pip_install }} ansible"
+  args:
+    creates: "{{ ansible_env.HOME }}/.local/bin/ansible"

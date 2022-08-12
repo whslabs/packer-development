@@ -1,0 +1,38 @@
+---
+# tasks file for role-pip
+- name: Install distutils
+  ansible.builtin.apt:
+    name: python3-distutils
+    state: present
+  become: yes
+- name: Get pip stats
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.local/bin/pip"
+  register: pip_st
+- name: Install pip
+  block:
+  - name: Create pip temporary file
+    ansible.builtin.tempfile:
+      state: file
+      suffix: pip
+    register: pip_tempfile
+  - name: Download pip
+    ansible.builtin.get_url:
+      dest: "{{ pip_tempfile.path }}"
+      force: yes
+      url: https://bootstrap.pypa.io/get-pip.py
+  - name: Install pip
+    ansible.builtin.command: python3 {{ pip_tempfile.path }}
+  - name: Remove pip temporary file
+    ansible.builtin.file:
+      path: "{{ pip_tempfile.path }}"
+      state: absent
+    when: pip_tempfile.path is defined
+  when: not pip_st.stat.exists
+- name: Export pip path
+  ansible.builtin.lineinfile:
+    line: export PATH=$PATH:$HOME/.local/bin/
+    path: "{{ ansible_env.HOME }}/.bashrc"
+- name: Set pip install
+  ansible.builtin.set_fact:
+    pip_install: "{{ ansible_env.HOME }}/.local/bin/pip install"

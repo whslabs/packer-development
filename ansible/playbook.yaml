@@ -2,6 +2,7 @@
   hosts: default
 
   roles:
+    - role: role-ansible
     - role: role-bazelisk
     - role: role-buildifier
     - role: role-cguv
