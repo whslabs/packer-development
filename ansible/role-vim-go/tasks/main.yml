@@ -1,0 +1,8 @@
+---
+# tasks file for role-vim-go
+- name: Download vim-go
+  ansible.builtin.git:
+    repo: https://github.com/fatih/vim-go.git
+    dest: "{{ ansible_env.HOME }}/.vim/pack/plugins/start/vim-go"
+- name: Install vim-go
+  ansible.builtin.command: vim +GoInstallBinaries +q

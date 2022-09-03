@@ -9,3 +9,4 @@
     - role: role-nix
     - role: role-node
     - role: role-pnpm
+    - role: role-vim-go
