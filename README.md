@@ -31,3 +31,11 @@ virt-install \
 cd ansible/
 ansible-playbook -idefault, -clocal playbook.yaml -K
 ```
+
+# List roles
+```sh
+find ansible/ \
+-maxdepth 1 \
+-mindepth 1 \
+-type d | xargs -I{} bash -c 'f={}; echo ${f#*-}'
+```
