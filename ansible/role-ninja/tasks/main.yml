@@ -1,0 +1,6 @@
+---
+# tasks file for role-ninja
+- name: Install ninja
+  ansible.builtin.command: "{{ pip_install }} ninja"
+  args:
+    creates: "{{ ansible_env.HOME }}/.local/bin/ninja"

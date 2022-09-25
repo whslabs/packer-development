@@ -6,6 +6,8 @@
     - role: role-bazelisk
     - role: role-buildifier
     - role: role-cguv
+    - role: role-meson
+    - role: role-ninja
     - role: role-nix
     - role: role-node
     - role: role-pnpm

@@ -1,0 +1,6 @@
+---
+# tasks file for role-meson
+- name: Install meson
+  ansible.builtin.command: "{{ pip_install }} meson"
+  args:
+    creates: "{{ ansible_env.HOME }}/.local/bin/meson"

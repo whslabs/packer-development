@@ -1,0 +1,6 @@
+---
+# tasks file for role-build-essential
+- name: Install build-essential
+  ansible.builtin.apt:
+    name: build-essential
+  become: yes
